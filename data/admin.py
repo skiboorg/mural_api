@@ -42,6 +42,7 @@ class ModelAdmin(NestedModelAdmin):
     inlines = [ModelImageInline, ModelTabInline]
     fields = [
         'image_preview',
+        'categories',
         'is_active',
         'name',
         'slug',

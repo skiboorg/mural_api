@@ -30,9 +30,11 @@ class Category(models.Model):
 class Model(models.Model):
     is_active = models.BooleanField('Отображать?', default=True)
     name = models.CharField('Название', max_length=255, blank=False, null=True)
+    short_description = models.TextField('Короткое описание', blank=True, null=True)
     slug = models.CharField('ЧПУ',max_length=255,
                                  help_text='Если не заполнено, создается на основе поля Назавание',
                                  blank=True, null=True)
+    categories = models.ManyToManyField(Category,blank=True)
 
 
     description = RichTextUploadingField('Описание', blank=True, null=True)
@@ -88,7 +90,7 @@ class ModelImage(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=False,related_name='products')
-    model = models.ManyToManyField(Model, null=True, blank=True, related_name='products')
+
     image = ResizedImageField(size=[420, 420], quality=95, force_format='WEBP', upload_to='model/images',
                               blank=False, null=True)
     vendor_code = models.CharField('Код', max_length=255, blank=False, null=True)

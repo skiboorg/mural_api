@@ -46,7 +46,7 @@ class ModelImageSerializer(serializers.ModelSerializer):
 class ModelSerializer(serializers.ModelSerializer):
     tabs = ModelTabSerializer(many=True,required=False,read_only=True)
     images = ModelImageSerializer(many=True,required=False,read_only=True)
-    products = ProductSerializer(many=True,required=False,read_only=True)
+    categories = CategorySerializer(many=True,required=False,read_only=True)
     class Meta:
         model = Model
         fields = '__all__'

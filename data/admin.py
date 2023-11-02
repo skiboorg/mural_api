@@ -46,7 +46,8 @@ class ModelAdmin(NestedModelAdmin):
         'is_active',
         'name',
         'slug',
-        'description'
+        'description',
+        'short_description'
 
     ]
 

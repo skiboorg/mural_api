@@ -35,6 +35,7 @@ class Model(models.Model):
                                  help_text='Если не заполнено, создается на основе поля Назавание',
                                  blank=True, null=True)
     categories = models.ManyToManyField(Category,blank=True)
+    scheme = models.IntegerField("Использовать схему 1 или 2", default=1, null=True)
 
 
     description = RichTextUploadingField('Описание', blank=True, null=True)
@@ -86,6 +87,20 @@ class ModelImage(models.Model):
         verbose_name = 'Картинка модели'
         verbose_name_plural = 'Картинки модели'
 
+class ModelFeature(models.Model):
+    model = models.ForeignKey(Model, on_delete=models.CASCADE, null=True, blank=False,
+                              related_name='technical_data')
+    label = models.CharField('Название', max_length=255, blank=False, null=True)
+    value = models.CharField('Значение', max_length=255, blank=False, null=True)
+
+
+    def __str__(self):
+        return f'{self.label}'
+
+    class Meta:
+        verbose_name = 'Характеристика'
+        verbose_name_plural = 'Характеристики'
+
 
 
 class Product(models.Model):
@@ -126,3 +141,15 @@ class ProductFeature(models.Model):
     class Meta:
         verbose_name = 'Характеристика'
         verbose_name_plural = 'Характеристики'
+
+
+class Faq(models.Model):
+    title = models.CharField(max_length=255,blank=True, null=True)
+    description = RichTextUploadingField(blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Faq'
+        verbose_name_plural = 'Faq'

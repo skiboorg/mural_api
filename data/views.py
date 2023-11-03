@@ -6,6 +6,10 @@ class GetCategories(generics.ListAPIView):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
 
+class GetFaq(generics.ListAPIView):
+    serializer_class = FaqSerializer
+    queryset = Faq.objects.all()
+
 class GetCategory(generics.RetrieveAPIView):
     serializer_class = CategorySerializer
     queryset = Category.objects.filter()

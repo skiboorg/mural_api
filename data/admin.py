@@ -33,13 +33,17 @@ class ModelTabInline(NestedStackedInline):
     model = ModelTab
     extra = 0
 
+class ModelFeatureInline(NestedStackedInline):
+    model = ModelFeature
+    extra = 0
+
 
 
 class ModelAdmin(NestedModelAdmin):
     model = Model
     list_display = ('image_preview','name',)
     readonly_fields = ['image_preview']
-    inlines = [ModelImageInline, ModelTabInline]
+    inlines = [ModelImageInline, ModelTabInline,ModelFeatureInline]
     fields = [
         'image_preview',
         'categories',
@@ -48,7 +52,6 @@ class ModelAdmin(NestedModelAdmin):
         'slug',
         'description',
         'short_description'
-
     ]
 
     def image_preview(self, obj):

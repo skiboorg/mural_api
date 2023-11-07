@@ -49,7 +49,8 @@ class ModelAdmin(NestedModelAdmin):
         'categories',
         'is_active',
         'name',
-        'slug',
+        'price',
+        'scheme',
         'description',
         'short_description'
     ]
@@ -66,3 +67,4 @@ class ModelAdmin(NestedModelAdmin):
 admin.site.register(Category)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Model, ModelAdmin)
+admin.site.register(Faq)

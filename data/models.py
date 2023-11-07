@@ -30,6 +30,7 @@ class Category(models.Model):
 class Model(models.Model):
     is_active = models.BooleanField('Отображать?', default=True)
     name = models.CharField('Название', max_length=255, blank=False, null=True)
+    price = models.CharField('Цена', max_length=255, blank=True, null=True)
     short_description = models.TextField('Короткое описание', blank=True, null=True)
     slug = models.CharField('ЧПУ',max_length=255,
                                  help_text='Если не заполнено, создается на основе поля Назавание',

@@ -7,13 +7,18 @@ from django.db.models.signals import post_save
 
 
 class Category(models.Model):
+    order_num = models.IntegerField(default=1, null=True)
     name = models.CharField('Название', max_length=255, blank=False, null=False)
+    name_alt = models.CharField('Название alt', max_length=255, blank=False, null=True)
+    note = models.CharField('Пометка', max_length=255, blank=True, null=True)
     slug = models.CharField('ЧПУ', max_length=255,
                             help_text='Если не заполнено, создается на основе поля Назавание',
                             blank=True, null=True)
-    old_id = models.IntegerField(blank=True, null=True)
+
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name} ({self.note})'
+
+
 
     def save(self, *args, **kwargs):
 
@@ -22,16 +27,20 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-        #ordering = ('order_num',)
+        ordering = ('order_num',)
         verbose_name = 'Категория товара'
         verbose_name_plural = 'Категории товаров'
 
 
 class Model(models.Model):
+    order_num = models.IntegerField(default=1, null=True)
     is_active = models.BooleanField('Отображать?', default=True)
     name = models.CharField('Название', max_length=255, blank=False, null=True)
+    name_alt = models.CharField('Название alt', max_length=255, blank=False, null=True)
     price = models.CharField('Цена', max_length=255, blank=True, null=True)
+    price_alt = models.CharField('Цена_alt', max_length=255, blank=True, null=True)
     short_description = models.TextField('Короткое описание', blank=True, null=True)
+    short_description_alt = models.TextField('Короткое описание_alt', blank=True, null=True)
     slug = models.CharField('ЧПУ',max_length=255,
                                  help_text='Если не заполнено, создается на основе поля Назавание',
                                  blank=True, null=True)
@@ -40,11 +49,12 @@ class Model(models.Model):
 
 
     description = RichTextUploadingField('Описание', blank=True, null=True)
+    description_alt = RichTextUploadingField('Описание_alt', blank=True, null=True)
     def __str__(self):
         return f'{self.name}'
 
     class Meta:
-        #ordering = ('order_num',)
+        ordering = ('order_num',)
         verbose_name = 'Модель'
         verbose_name_plural = 'Модели'
 
@@ -58,7 +68,9 @@ class ModelTab(models.Model):
     model = models.ForeignKey(Model, on_delete=models.CASCADE, null=True, blank=False,
                                 related_name='tabs')
     label = models.CharField('Название таба', max_length=255, blank=False, null=True)
+    label_alt = models.CharField('Название таба_alt', max_length=255, blank=False, null=True)
     text = RichTextUploadingField('Текст', blank=True, null=True)
+    text_alt = RichTextUploadingField('Текст_alt', blank=True, null=True)
 
     def __str__(self):
         return f'{self.label}'
@@ -92,7 +104,9 @@ class ModelFeature(models.Model):
     model = models.ForeignKey(Model, on_delete=models.CASCADE, null=True, blank=False,
                               related_name='technical_data')
     label = models.CharField('Название', max_length=255, blank=False, null=True)
+    label_alt = models.CharField('Название_alt', max_length=255, blank=False, null=True)
     value = models.CharField('Значение', max_length=255, blank=False, null=True)
+    value_alt = models.CharField('Значение_alt', max_length=255, blank=False, null=True)
 
 
     def __str__(self):
@@ -111,10 +125,12 @@ class Product(models.Model):
                               blank=False, null=True)
     vendor_code = models.CharField('Код', max_length=255, blank=False, null=True)
     name = models.CharField('Название', max_length=255, blank=False, null=True)
+    name_alt = models.CharField('Название_alt', max_length=255, blank=False, null=True)
     slug = models.CharField('ЧПУ', max_length=255,
                             help_text='Если не заполнено, создается на основе поля Назавание',
                             blank=True, null=True)
     description = RichTextUploadingField('Текст', blank=True, null=True)
+    description_alt = RichTextUploadingField('Текст_alt', blank=True, null=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -133,7 +149,9 @@ class ProductFeature(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=False,
                                 related_name='features')
     label = models.CharField('Название', max_length=255, blank=False, null=True)
+    label_alt = models.CharField('Название_alt', max_length=255, blank=False, null=True)
     value = models.CharField('Значение', max_length=255, blank=False, null=True)
+    value_alt = models.CharField('Значение_alt', max_length=255, blank=False, null=True)
 
 
     def __str__(self):
@@ -146,7 +164,9 @@ class ProductFeature(models.Model):
 
 class Faq(models.Model):
     title = models.CharField(max_length=255,blank=True, null=True)
+    title_alt = models.CharField(max_length=255,blank=True, null=True)
     description = RichTextUploadingField(blank=True, null=True)
+    description_alt = RichTextUploadingField(blank=True, null=True)
 
     def __str__(self):
         return f'{self.title}'

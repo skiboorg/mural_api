@@ -119,7 +119,7 @@ class ModelFeature(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=False,related_name='products')
+    category = models.ManyToManyField(Category, blank=False,related_name='products')
 
     image = ResizedImageField(size=[420, 420], quality=95, force_format='WEBP', upload_to='model/images',
                               blank=False, null=True)

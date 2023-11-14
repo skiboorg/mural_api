@@ -49,10 +49,15 @@ class ModelAdmin(NestedModelAdmin):
         'categories',
         'is_active',
         'name',
+        'name_alt',
+        'slug',
         'price',
+        'price_alt',
         'scheme',
         'description',
+        'description_alt',
         'short_description'
+        'short_description_alt'
     ]
 
     def image_preview(self, obj):

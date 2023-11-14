@@ -119,6 +119,7 @@ class ModelFeature(models.Model):
 
 
 class Product(models.Model):
+    order_num = models.IntegerField(default=1, null=True)
     category = models.ManyToManyField(Category, blank=False,related_name='products')
 
     image = ResizedImageField(size=[420, 420], quality=95, force_format='WEBP', upload_to='model/images',
@@ -136,6 +137,7 @@ class Product(models.Model):
         return f'{self.name}'
 
     class Meta:
+        ordering = ('order_num',)
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
 

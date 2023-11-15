@@ -56,7 +56,7 @@ class ModelAdmin(NestedModelAdmin):
         'scheme',
         'description',
         'description_alt',
-        'short_description'
+        'short_description',
         'short_description_alt'
     ]
 

@@ -14,6 +14,7 @@ class Category(models.Model):
     slug = models.CharField('ЧПУ', max_length=255,
                             help_text='Если не заполнено, создается на основе поля Назавание',
                             blank=True, null=True)
+    show_at_equipment = models.BooleanField('Вывод на странице equipment ?', default=False)
 
     def __str__(self):
         return f'{self.name} ({self.note})'

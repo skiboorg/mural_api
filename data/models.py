@@ -177,3 +177,36 @@ class Faq(models.Model):
     class Meta:
         verbose_name = 'Faq'
         verbose_name_plural = 'Faq'
+
+
+class CallbackForm(models.Model):
+    name = models.CharField('Имя',max_length=255,blank=False, null=True)
+    email= models.EmailField('email',max_length=255,blank=False, null=True)
+    phone= models.CharField('Телефон',max_length=255,blank=False, null=True)
+    subject= models.CharField('Тема',max_length=255,blank=True, null=True)
+    text = models.TextField('Текст',blank=True, null=True)
+    file= models.FileField('Файл',upload_to='forms',blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.created_at}'
+
+    class Meta:
+        verbose_name = 'CallbackForm'
+        verbose_name_plural = 'CallbackForms'
+
+
+class RequestForm(models.Model):
+    name = models.CharField('Имя', max_length=255, blank=False, null=True)
+    email = models.EmailField('email', max_length=255, blank=False, null=True)
+    phone = models.CharField('Телефон', max_length=255, blank=False, null=True)
+    firm = models.CharField('Фирма', max_length=255, blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.created_at}'
+
+    class Meta:
+        verbose_name = 'RequestForm'
+        verbose_name_plural = 'RequestForm'

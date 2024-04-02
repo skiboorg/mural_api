@@ -24,3 +24,12 @@ class GetModel(generics.RetrieveAPIView):
     serializer_class = ModelSerializer
     queryset = Model.objects.filter()
     lookup_field = 'slug'
+
+
+class NewCallback(generics.CreateAPIView):
+    serializer_class = CallbackFormSerializer
+    queryset = CallbackForm.objects.all()
+
+class NewRequest(generics.CreateAPIView):
+    serializer_class = RequestFormSerializer
+    queryset = RequestForm.objects.all()

@@ -64,8 +64,15 @@ class ModelSerializer(serializers.ModelSerializer):
 
 
 
+class CallbackFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CallbackForm
+        fields = '__all__'
 
 
-
+class RequestFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RequestForm
+        fields = '__all__'
 
 

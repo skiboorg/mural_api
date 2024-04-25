@@ -69,7 +69,15 @@ class ModelAdmin(NestedModelAdmin):
 
     image_preview.short_description = 'Текущее изображение'
 
+class CallbackFormAdmin(NestedModelAdmin):
+    model = CallbackForm
+    list_display = ('name',
+'email',
+'phone',
+'subject',
+'created_at',)
 admin.site.register(Category)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Model, ModelAdmin)
 admin.site.register(Faq)
+admin.site.register(CallbackForm, CallbackFormAdmin)

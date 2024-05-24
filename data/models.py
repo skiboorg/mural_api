@@ -51,6 +51,12 @@ class Model(models.Model):
 
     description = RichTextUploadingField('Описание', blank=True, null=True)
     description_alt = RichTextUploadingField('Описание_alt', blank=True, null=True)
+
+    tag_title = models.CharField('Тег title EN', max_length=255, blank=True, null=True)
+    tag_title_alt = models.CharField('Тег title DE', max_length=255, blank=True, null=True)
+
+    tag_description = models.TextField('Тег description EN', blank=True, null=True)
+    tag_description_alt = models.TextField('Тег description DE', blank=True, null=True)
     def __str__(self):
         return f'{self.name}'
 

@@ -57,7 +57,11 @@ class ModelAdmin(NestedModelAdmin):
         'description',
         'description_alt',
         'short_description',
-        'short_description_alt'
+        'short_description_alt',
+        'tag_title',
+        'tag_title_alt',
+        'tag_description',
+        'tag_description_alt'
     ]
 
     def image_preview(self, obj):
